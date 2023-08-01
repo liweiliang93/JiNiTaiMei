@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">JiNiTaiMei</string>
+    <string name="TieShanKao">TieShanKao</string>
+    <string name="QuMinZhiZuoRen">QuanMinZhiZuoRen</string>
+    <string name="LanQiu">LanQiu</string>
+    <string name="Tiao">Tiao</string>
+    <string name="TouPiao">TouPiao</string>
+    <string name="add_tasks">ADD TASKS</string>
+    <string name="HuangHun">HuangHun</string>
+    <string-array name="tasks">
+        <item>Buy milk</item>
+        <item>Choose curtain</item>
+        <item>Plant rosemary</item>
+        <item>Finish the essay</item>
+        <item>Receive new packages</item>
+        <item>Take a photo</item>
+    </string-array>
+</resources>
