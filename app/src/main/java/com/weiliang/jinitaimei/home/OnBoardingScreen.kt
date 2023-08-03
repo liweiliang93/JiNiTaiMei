@@ -57,47 +57,7 @@ fun OnboardingScreen(
                     add(GifDecoder.Factory())
                 }
             }).build()
-        Row {
-            Button(onClick = {count++}) {
-                Text(text = "Click")
-            }
-            Spacer(modifier = modifier.padding(horizontal = 16.dp))
-            Image(
-                modifier = Modifier
-                    .size(100.dp),
-                painter = rememberImagePainter(
-                    data = R.drawable.cxk2,
-                    imageLoader = imageLoader,
-                    builder = {
-                        placeholder(R.drawable.cxk1)//占位图
-                        crossfade(true)//淡出效果
-
-                    }),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds
-            )
-            Spacer(modifier = modifier.padding(horizontal = 16.dp))
-            Button(onClick = { count++ }) {
-                Text(text = "charge")
-            }
-        }
-
-        Row {
-            Button(
-                modifier = Modifier.padding(vertical = 36.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
-                ),
-                onClick = {
-                    navController.navigate("second_page")
-                },
-                enabled = count >= 10
-            ) {
-                Text(
-                    text = "StartGame"
-                )
-            }
-        }
+        Spacer(modifier = modifier.padding(vertical = 20.dp))
 
         Row(
             Modifier.background(MaterialTheme.colorScheme.onTertiary)
@@ -127,6 +87,49 @@ fun OnboardingScreen(
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+
+        Row {
+            Button(onClick = {count++}) {
+                Text(text = "Click")
+            }
+            Spacer(modifier = modifier.padding(horizontal = 16.dp))
+            Image(
+                modifier = Modifier
+                    .size(100.dp),
+                painter = rememberImagePainter(
+                    data = R.drawable.cxk2,
+                    imageLoader = imageLoader,
+                    builder = {
+                        placeholder(R.drawable.cxk1)//占位图
+                        crossfade(true)//淡出效果
+
+                    }),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
+            Spacer(modifier = modifier.padding(horizontal = 16.dp))
+            Button(onClick = { count++ }) {
+                Text(text = "charge")
+            }
+        }
+
+        Row {
+            Button(
+                modifier = Modifier.padding(vertical = 26.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                ),
+                onClick = {
+                    navController.navigate("second_page")
+                },
+                enabled = count >= 10
+            ) {
+                Text(
+                    text = "StartGame"
+                )
+            }
+        }
+
         TextHint(modifier = modifier, text = "Choose the four ikuns from them")
         Show()
     }

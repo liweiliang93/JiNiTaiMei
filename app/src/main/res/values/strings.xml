@@ -8,11 +8,12 @@
     <string name="add_tasks">ADD TASKS</string>
     <string name="HuangHun">HuangHun</string>
     <string-array name="tasks">
-        <item>Buy milk</item>
-        <item>Choose curtain</item>
-        <item>Plant rosemary</item>
+        <item>Tom\'s Chaotic Space</item>
+        <item>Yoyo Shen</item>
         <item>Finish the essay</item>
-        <item>Receive new packages</item>
+        <item>Self-discipline</item>
+        <item>Zhuo brain</item>
         <item>Take a photo</item>
+        <item>KunBa brother</item>
     </string-array>
 </resources>

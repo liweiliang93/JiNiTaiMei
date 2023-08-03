@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +46,7 @@ import kotlinx.coroutines.delay
 import java.util.Locale
 
 
-private const val SplashWaitTime: Long = 1000
+private const val SplashWaitTime: Long = 60000
 //LandingScreen
 @Composable
 fun LandingScreen(
@@ -55,7 +57,9 @@ fun LandingScreen(
         modifier = modifier.fillMaxSize()
     ) {
         Column (
-            modifier = modifier.fillMaxSize()
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ){
 
             //LandingScreen跳转结束时间设置
@@ -64,30 +68,34 @@ fun LandingScreen(
                 delay(SplashWaitTime)
                 currentOnTimeout()
             }
-            Spacer(modifier = Modifier.padding(20.dp))
 
             //加载提示框
             TopAppBar(modifier)
             Spacer(modifier = Modifier.padding(15.dp))
 
             //文字提示：诸神黄昏,迎接黎明
-            TextHint(modifier, text = "      Ragnarok, meet the dawn of a new era.")
+            TextHint(modifier, text = "Ragnarok, meet the dawn of a new era.")
 
             //诸神列表
             CharacterEventRow()
             Spacer(modifier = Modifier.padding(vertical = 3.dp))
 
-            TextHint(text = "          Please choose the one you like best")
+            TextHint(text = "Please choose the one you like best")
+            Spacer(modifier = modifier.padding(vertical = 5.dp))
 
             val colors = listOf(Color(0xFF005599), Color(0xFF3FFFED))
-            Row {
+            Row (){
                 Column(
                     //边框设置为黑色
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
                     modifier = modifier
                         .background(Color.White)
-                        .padding(25.dp)
                         .border(  //设置渐变边框
-                            border = BorderStroke(1.dp, Brush.linearGradient(colors)), //设置边框粗细与边框渐变色
+                            border = BorderStroke(
+                                2.dp,
+                                Brush.linearGradient(colors)
+                            ), //设置边框粗细与边框渐变色
                             shape = RoundedCornerShape(5.dp) //圆角形状
                         )
                 ) {
@@ -126,13 +134,13 @@ fun TopAppBar(
         Text(
             text = "Loading..请等待1分钟",
             style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.primary,
+            color = colorScheme.primary,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
         )
         Spacer(modifier = modifier.padding(5.dp))
         Button(
-            onClick ={},
+            onClick ={  },
             modifier = modifier.size(45.dp)
         ) {}
     }
@@ -149,7 +157,7 @@ fun TextHint(
         Text(
             text = text.uppercase(Locale.getDefault()),
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.secondary,
+            color = colorScheme.secondary,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
         )
@@ -166,7 +174,7 @@ fun TextHint(
         Text(
             text = text.uppercase(Locale.getDefault()),
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.secondary,
+            color = colorScheme.secondary,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
         )
@@ -184,9 +192,13 @@ fun CharacterEventRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(horizontal = 16.dp),
             modifier = modifier
-                .background(MaterialTheme.colorScheme.primary)
+                .background(colorScheme.primary)
+                .clickable(
+                    onClick = {
+
+                    }
+                )
         ) {
-            //图片可组合项
             items(CharacterEventData) { item ->
                 CharacterEvent(
                     item.drawable,
@@ -197,6 +209,7 @@ fun CharacterEventRow(
         }
     }
 }
+
 
 @Composable
 fun CharacterEvent(
@@ -239,6 +252,10 @@ private val CharacterEventData = listOf(
     R.drawable.tiao to R.string.Tiao,
     R.drawable.toupiao to R.string.TouPiao,
     R.drawable.huanghun to R.string.HuangHun,
+).map { DrawableStringPair(it.first, it.second) }
+
+private val CharacterEventData1 = listOf(
+    R.drawable.cxk1 to R.string.TieShanKao,
 ).map { DrawableStringPair(it.first, it.second) }
 
 private data class DrawableStringPair(

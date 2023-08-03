@@ -49,3 +49,8 @@ val Gray900 = Color(0xff757575)
 
 val White = Color(0xffffffff)
 val Black = Color(0xff000000)
+
+val Purple700 = Color(0xFF3700B3)
+val Teal200 = Color(0x5503DAC5)
+val Wood500 = Color(0xFFDAAB03)
+val Wood700 = Color(0xFFBC8C4B)
