@@ -14,3 +14,6 @@ https://www.bilibili.com/video/BV1ob4y1a7ad?p=1&vd_source=c46bbf3de8b912b30846f9
 
 若是针对XML的学习则可以通过以下网站来进行学习(本人只学习了一部分不做评价)：
 https://www.runoob.com/w3cnote/android-tutorial-intro.html
+
+
+66
