@@ -8,8 +8,7 @@
 
 个人对于JectPack Compose的学习都是基于官网网站的教程,若是对于JectPack Compose感兴趣的友友们可以通过以下链接前往官网网站系统进行学习:
 https://developer.android.com/courses/pathways/compose?hl=zh-cn
-
-可结合视频进行学习:
+,可结合视频进行学习:
 https://www.bilibili.com/video/BV1ob4y1a7ad?p=1&vd_source=c46bbf3de8b912b30846f96b73ff4df6
 (个人建议单独对官方的项目和教程进行学习,不必看视频来浪费时间,即单独针对上方第一个链接进行学习)
 
