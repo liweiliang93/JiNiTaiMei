@@ -51,15 +51,23 @@ fun MainScreen(navController: NavController){
 }
 
 
-//导航栏
+//导航栏:显示一个自定义的应用栏
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar() {
+
+    //预定义组件:创建一个顶部应用栏
     TopAppBar(
+
+        //windowInsets定义应用栏的系统栏仅在水平方向上填充
         windowInsets = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal),
+
+        //定义应用栏的颜色
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
         ),
+
+        //定义导航图标:Menu
         navigationIcon = {
             IconButton(
                 onClick = {
@@ -74,6 +82,8 @@ fun AppBar() {
                 )
             }
         },
+
+        //定义应用栏的标题部分
         title = {
             Text(
                 text = "JiNiTaiMei",
@@ -84,7 +94,10 @@ fun AppBar() {
                     .fillMaxSize()
                     .wrapContentSize(align = Alignment.Center)
             )
-        }, actions = {
+        },
+
+        //定义应用栏的操作按钮部分:Share、Settings
+        actions = {
             IconButton(
                 onClick = {
 
@@ -116,7 +129,7 @@ fun AppBar() {
 @Composable
 fun HuaRongDao() {
     var theme by remember { mutableStateOf(0) }
-    // A surface container using the 'background' color from the theme
+
     Surface(color = MaterialTheme.colorScheme.background) {
 
         Column {

@@ -1,6 +1,5 @@
 package com.weiliang.jinitaimei.home
 
-
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
@@ -46,9 +45,13 @@ import kotlinx.coroutines.delay
 import java.util.Locale
 
 
+/*
+    LandingScreen:游戏加载界面,通过点击坤坤和拖动坤坤来等待游戏加载完成
+*/
+
+//使用SplashWaitTime来进行与sleep进行延时,SplashWaitTime表示延长的时间
 private const val SplashWaitTime: Long = 60000
 
-//LandingScreen
 @Composable
 fun LandingScreen(
     onTimeout: () -> Unit,
@@ -81,9 +84,11 @@ fun LandingScreen(
             CharacterEventRow()
             Spacer(modifier = Modifier.padding(vertical = 3.dp))
 
+            //文字提示：请选择你最喜欢的一个坤坤
             TextHint(text = "Please choose the one you like best")
             Spacer(modifier = modifier.padding(vertical = 5.dp))
 
+            //定义并使用渐变色colors
             val colors = listOf(Color(0xFF005599), Color(0xFF3FFFED))
             Row (){
                 Column(
@@ -102,13 +107,9 @@ fun LandingScreen(
                 ) {
                     //加载提示框
                     KunDongAndSpacer(modifier,R.drawable.kt1, R.raw.nzj,R.raw.ngm, R.drawable.dlq,"巅峰引来虚伪的拥护")
-
                     KunDongAndSpacer(modifier,R.drawable.kt2, R.raw.dxj ,R.raw.jntm, R.drawable.cxk1,"    中分头背带裤     ")
-
                     KunDongAndSpacer(modifier,R.drawable.kt3, R.raw.music,R.raw.lblhnkg, R.drawable.cxk1,"    山外青山楼外楼  ")
-
                     KunDongAndSpacer(modifier,R.drawable.kt4, R.raw.ctrapnusic,R.raw.gy, R.drawable.cxk1,"    唱跳RAP打篮球    ")
-
                     KunDongAndSpacer(modifier,R.drawable.kt5, R.raw.cj,R.raw.qz, R.drawable.cxk1,"黄昏见证虔诚的信徒")
                 }
             }

@@ -13,15 +13,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    JiNiTaiMeiTheme {
-        ScreenControl()
-    }
-}
-
+/*
+    ScreenControl页面管理:用于进行页面跳转的控制
+ */
 @Composable
 fun ScreenControl() {
 

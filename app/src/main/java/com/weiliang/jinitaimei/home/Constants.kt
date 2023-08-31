@@ -13,11 +13,8 @@ val huang = Chess("黄忠", { MaterialTheme.chessAssets.huangzhong }, 1, 2)
 val zhao = Chess("赵云", { MaterialTheme.chessAssets.zhaoyun }, 1, 2)
 val ma = Chess("马超", { MaterialTheme.chessAssets.machao }, 1, 2)
 val guan = Chess("关羽", { MaterialTheme.chessAssets.guanyu }, 2, 1)
-@OptIn(ExperimentalStdlibApi::class)
-val zu = buildList {
-    repeat(4) { add(Chess("卒$it", { MaterialTheme.chessAssets.zu }, 1, 1)) }
-}
 
+val zu = buildList { repeat(4) { add(Chess("卒$it", { MaterialTheme.chessAssets.zu }, 1, 1)) } }
 
 typealias ChessOpening = List<Triple<Chess, Int, Int>>
 
