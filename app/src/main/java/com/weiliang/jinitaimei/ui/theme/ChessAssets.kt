@@ -7,6 +7,7 @@ import androidx.compose.runtime.compositionLocalOf
 import com.weiliang.jinitaimei.R
 
 
+//密封接口定义象棋棋子资源的属性
 sealed interface ChessAssets {
     val huangzhong: Int
     val caocao: Int
@@ -17,7 +18,7 @@ sealed interface ChessAssets {
     val zu: Int
 }
 
-
+//暗色接口
 object DarkChess : ChessAssets {
     override val huangzhong = R.drawable.huangzhong
     override val caocao = R.drawable.caocao
@@ -28,6 +29,7 @@ object DarkChess : ChessAssets {
     override val zu = R.drawable.zu
 }
 
+//亮色接口
 object LightChess : ChessAssets {
     override val huangzhong = R.drawable.huagnzhong_2
     override val caocao = R.drawable.caocao_2
@@ -38,22 +40,10 @@ object LightChess : ChessAssets {
     override val zu = R.drawable.zu_2
 }
 
-object WoodChess : ChessAssets {
-    override val huangzhong = R.drawable.huangzhong_3
-    override val caocao = R.drawable.caocao_3
-    override val zhaoyun = R.drawable.zhaoyun_3
-    override val zhangfei = R.drawable.zhangfei_3
-    override val guanyu = R.drawable.guanyu_3
-    override val machao = R.drawable.machao_3
-    override val zu = R.drawable.zu_3
-}
+//在 Composable 中获取当前的棋盘资源，默认情况下,使用 DarkChess对象
+internal var LocalChessAssets = compositionLocalOf<ChessAssets> { DarkChess }
 
-
-
-internal var LocalChessAssets = compositionLocalOf<ChessAssets> {
-    DarkChess
-}
-
+//允许你在 Composable 中获取当前主题下的棋盘资源,使用局部组合对象 LocalChessAssets 的当前值作为资源提供
 val MaterialTheme.chessAssets
     @Composable
     @ReadOnlyComposable

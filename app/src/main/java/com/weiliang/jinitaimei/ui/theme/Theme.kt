@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.weiliang.jinitaimei.ui.theme
 
 import androidx.compose.material3.MaterialTheme
@@ -6,13 +8,17 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
+// 定义暗色界面主题颜色配置
 private val DarkColorScheme = darkColorScheme(
     primary = Blue200,
     onPrimary = Color.White,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primaryContainer = Blue200,
+    secondary = Gray900,
+    tertiary = PurpleGrey500,
+    onTertiary = Pink80,
 )
 
+// 定义亮色界面主题颜色配置
 private val LightColorScheme = lightColorScheme(
     primary = Blue200,
     onPrimary = Color.White,
@@ -22,13 +28,6 @@ private val LightColorScheme = lightColorScheme(
     onTertiary = Pink80,
 )
 
-private val WoodColorPalette = lightColorScheme(
-    primary = Wood500,
-    primaryContainer = Purple700,
-    secondary = Wood700,
-    background = Color.LightGray
-
-)
 
 @Composable
 fun JiNiTaiMeiTheme(
@@ -36,13 +35,14 @@ fun JiNiTaiMeiTheme(
     content: @Composable() () -> Unit
 ) {
 
-    val (colorScheme,theme) = when(theme % 3){
+    // 明暗主题切换
+    val (colorScheme,theme) = when(theme % 2){
             0 -> LightColorScheme to DarkChess
             1 ->  DarkColorScheme to LightChess
-            2 -> WoodColorPalette to WoodChess
         else -> error("")
     }
 
+    // 重写MaterialTheme主题配色和颜色形状配置
     MaterialTheme(
         colorScheme = LightColorScheme,
         shapes = JiNiTaiMeiShapes,

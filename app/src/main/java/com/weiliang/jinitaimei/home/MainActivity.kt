@@ -12,7 +12,6 @@ import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
 
 class MainActivity : ComponentActivity(){
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -23,13 +22,7 @@ class MainActivity : ComponentActivity(){
     }
 }
 
-
-
-@Composable
-fun GameScreen() {
-
-}
-
+// 预览亮色游戏界面
 @Preview(showBackground = true)
 @Composable
 fun LightPreview() {
@@ -40,6 +33,7 @@ fun LightPreview() {
     }
 }
 
+// 预览暗色游戏界面
 @Preview(showBackground = true)
 @Composable
 fun DarkPreview() {
@@ -49,15 +43,3 @@ fun DarkPreview() {
         )
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun WoodPreview() {
-    JiNiTaiMeiTheme(2) {
-
-        Density(2.7f, 1f).ChessBoard(
-            chessList = opening.toList(),
-        )
-    }
-}
-

@@ -2,6 +2,9 @@ package com.weiliang.jinitaimei.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+/*
+    定义自己所需的颜色,可以通过取色器取十六进制进行定义
+ */
 val Purple40 = Color(0xFF6650a4)
 val Purple80 = Color(0xFFD0BCFF)
 val Purple200 = Color(0xFFBB86FC)

@@ -24,17 +24,19 @@ fun DefaultPreview() {
 
 @Composable
 fun ScreenControl() {
-    // 创建NavController
+
+    //创建NavController,使用NavController进行页面跳转
     val navController = rememberNavController()
-    //创建开始页面
-    var showLandingScreen by remember {
-        mutableStateOf(true)
-    }
-    //判断是否显示LandingScreen
+
+    //通过showLandingScreen判断LandingScreen是否已经显示过
+    var showLandingScreen by remember { mutableStateOf(true) }
     if(showLandingScreen){
+
         //显示LandingScreen
         LandingScreen(onTimeout = { showLandingScreen = false })
+
     }else{
+
         // 用NavHost将NavController和导航图相关联，startDestination指定起始的可组合项
         NavHost(navController = navController, startDestination = "first_page") {
 
@@ -42,11 +44,13 @@ fun ScreenControl() {
             composable("first_page") {
                 OnboardingScreen(navController)
             }
+
             // 给SecondPage可组合项指定路径
             composable("second_page") {
                 MainScreen(navController)
             }
 
         }
+
     }
 }

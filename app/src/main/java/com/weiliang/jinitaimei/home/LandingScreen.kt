@@ -47,6 +47,7 @@ import java.util.Locale
 
 
 private const val SplashWaitTime: Long = 60000
+
 //LandingScreen
 @Composable
 fun LandingScreen(

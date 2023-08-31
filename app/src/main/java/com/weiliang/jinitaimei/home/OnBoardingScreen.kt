@@ -37,7 +37,7 @@ import com.weiliang.jinitaimei.R
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
 
-//FirstPage
+//FirstPage:游戏准备界面,
 @Composable
 fun OnboardingScreen(
     navController: NavController,
