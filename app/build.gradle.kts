@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.weiliang.jinitaimei"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.weiliang.jinitaimei"
@@ -51,12 +51,12 @@ android {
 
 dependencies {
     implementation("com.google.accompanist:accompanist-navigation-animation:0.28.0")
-    implementation("io.coil-kt:coil-compose:2.2.2")
-    implementation("io.coil-kt:coil-svg:2.2.2")
-    implementation("com.github.skydoves:landscapist-coil:2.0.3")
-    implementation("com.github.skydoves:landscapist-glide:2.1.0")
-    implementation("com.github.skydoves:cloudy:0.1.1")
-    implementation("io.coil-kt:coil-gif:1.2.1")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("io.coil-kt:coil-svg:2.4.0")
+    implementation("com.github.skydoves:landscapist-coil:2.2.8")
+    implementation("com.github.skydoves:landscapist-glide:2.2.8")
+    implementation("com.github.skydoves:cloudy:0.1.2")
+    implementation("io.coil-kt:coil-gif:2.4.0")
     implementation("androidx.navigation:navigation-compose:2.6.0-alpha08")
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")

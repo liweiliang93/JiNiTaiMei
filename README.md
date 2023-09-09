@@ -13,4 +13,4 @@ https://www.bilibili.com/video/BV1ob4y1a7ad?p=1&vd_source=c46bbf3de8b912b30846f9
 (个人建议单独对官方的项目和教程进行学习,不必看视频来浪费时间,即单独针对上方第一个链接进行学习)
 
 若是针对XML的学习则可以通过以下网站来进行学习(本人只学习了一部分不做评价)：
-https://www.runoob.com/w3cnote/android-tutorial-intro.html
+https://www.runoob.com/w3cnote/android-tutorial-intro. html
