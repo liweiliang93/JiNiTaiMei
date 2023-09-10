@@ -10,9 +10,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
-
+/*
+    ComponentActivity是Jetpack库类,用于支持 Jetpack Compose 的组件化开发。
+*/
 class MainActivity : ComponentActivity(){
+
+     /*
+        重写了 onCreate 方法,是 Android活动的生命周期方法之一,
+        当活动第一次创建时，系统会调用此方法
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
+        //调用父类的 onCreate 方法，确保它执行了必要的初始化工作
         super.onCreate(savedInstanceState)
         setContent {
             JiNiTaiMeiTheme {

@@ -49,8 +49,8 @@ import java.util.Locale
     LandingScreen:游戏加载界面,通过点击坤坤和拖动坤坤来等待游戏加载完成
 */
 
-//使用SplashWaitTime来进行与sleep进行延时,SplashWaitTime表示延长的时间
-private const val SplashWaitTime: Long = 60000
+//使用 SPLASHWAITTIME 来进行与sleep进行延时,SPLASHWAITTIME 表示延长的时间
+private const val SPLASHWAITTIME: Long = 60000
 
 @Composable
 fun LandingScreen(
@@ -69,17 +69,17 @@ fun LandingScreen(
             //LandingScreen跳转结束时间设置
             val currentOnTimeout by rememberUpdatedState(onTimeout)
             LaunchedEffect(Unit) {
-                delay(SplashWaitTime)
+                delay(SPLASHWAITTIME)
                 currentOnTimeout()
             }
 
             //加载提示框
             TopAppBar(modifier)
             Spacer(modifier = Modifier.padding(15.dp))
-
+            
             //文字提示：诸神黄昏,迎接黎明
             TextHint(modifier, text = "Ragnarok, meet the dawn of a new era.")
-
+            
             //诸神列表
             CharacterEventRow()
             Spacer(modifier = Modifier.padding(vertical = 3.dp))
@@ -90,7 +90,7 @@ fun LandingScreen(
 
             //定义并使用渐变色colors
             val colors = listOf(Color(0xFF005599), Color(0xFF3FFFED))
-            Row (){
+            Row{
                 Column(
                     //边框设置为黑色
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -256,9 +256,6 @@ private val CharacterEventData = listOf(
     R.drawable.huanghun to R.string.HuangHun,
 ).map { DrawableStringPair(it.first, it.second) }
 
-private val CharacterEventData1 = listOf(
-    R.drawable.cxk1 to R.string.TieShanKao,
-).map { DrawableStringPair(it.first, it.second) }
 
 private data class DrawableStringPair(
     @DrawableRes val drawable: Int,
