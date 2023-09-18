@@ -42,6 +42,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerInputChange
@@ -63,6 +64,10 @@ import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
 
+/*
+        定义五行坤坤中的一行,由一个可点击的坤头、坤言和坤图组成,并且坤头可点击后播放坤曲,再次点击可暂;右侧坤图可以点击后
+    放大,同时可以随意拖动(拖动哥哥的同时还会播放其他歌曲),每一个音频都是独立的.
+ */
 @Composable
 fun KunDongAndSpacer(
     modifier: Modifier,
@@ -73,9 +78,14 @@ fun KunDongAndSpacer(
     hint:String
 ){
     Row {
+        
         Spacer(modifier = modifier.padding(10.dp))
+        
+        //定义一个已经初始化并准备好播放指定音频资源的 MediaPlayer 对象
         val mediaPlayer: MediaPlayer?
         mediaPlayer = MediaPlayer.create(LocalContext.current,headMusic)
+        
+        //为图片绑定点击播放暂停歌曲事件
         Image(
             painterResource(headImage),
             contentDescription = "avatar",
@@ -83,6 +93,7 @@ fun KunDongAndSpacer(
                 .size(50.dp)
                 .align(Alignment.CenterVertically)
                 .clickable {
+                    //点击即放,再次即关
                     if(!mediaPlayer.isPlaying){
                         mediaPlayer?.start()
                     }else{
@@ -120,6 +131,8 @@ fun KunDong(
         Box(
             modifier = Modifier
         ) {
+            
+            //设置BOX为可自由拖动,同时在box内部放入Image,通过点击改变big的值改变图片的大小
             Box(Modifier
                 .offset { IntOffset(offset.x.roundToInt(), offset.y.roundToInt()) }
                 .background(Color.White)
@@ -141,6 +154,7 @@ fun KunDong(
                     )
                 }
             ){
+                
                 var big by remember {
                     mutableStateOf(false)
                 }
@@ -175,6 +189,7 @@ fun Show(){
         modifier = Modifier
             .padding()
             .background(MaterialTheme.colorScheme.tertiary)
+            .alpha(0.5f)
     ){
         if (tasks.isEmpty()) {
             item {
@@ -267,3 +282,5 @@ private fun Modifier.swipeToDismiss(
         }
     }
 }
+
+

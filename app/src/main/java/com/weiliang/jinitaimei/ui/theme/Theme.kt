@@ -26,6 +26,7 @@ private val LightColorScheme = lightColorScheme(
     secondary = Gray900,
     tertiary = PurpleGrey500,
     onTertiary = Pink80,
+    inverseSurface = Purple500,
 )
 
 
