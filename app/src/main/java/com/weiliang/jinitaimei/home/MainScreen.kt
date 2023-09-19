@@ -158,13 +158,7 @@ fun HuaRongDao() {
 
             Row {
                 Spacer(modifier = Modifier.width(10.dp))
-
-                Button(modifier = Modifier.weight(1f),
-                    onClick = { theme += 1 }) {
-                    Text("Theme")
-                }
-
-                Spacer(modifier = Modifier.width(10.dp))
+                
                 Button(
                     modifier = Modifier.weight(1f),
                     onClick = { chessState = opening.toList() }) {
