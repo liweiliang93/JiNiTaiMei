@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei.activity
 
 import android.os.Build
 import androidx.annotation.DrawableRes
@@ -52,6 +52,7 @@ import coil.compose.rememberImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.weiliang.jinitaimei.R
+import com.weiliang.jinitaimei.control.KunDongAndSpacer
 import kotlinx.coroutines.delay
 import java.util.Locale
 
@@ -60,7 +61,7 @@ import java.util.Locale
 */
 
 //使用 SPLASHWAITTIME 来进行与sleep进行延时,SPLASHWAITTIME 表示延长的时间
-private const val SPLASHWAITTIME: Long = 6000
+private const val SPLASHWAITTIME: Long = 60000
 
 @Composable
 fun LandingScreen(

@@ -7,6 +7,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.weiliang.jinitaimei.ui.chess.DarkChess
+import com.weiliang.jinitaimei.ui.chess.LightChess
 
 // 定义暗色界面主题颜色配置
 private val DarkColorScheme = darkColorScheme(

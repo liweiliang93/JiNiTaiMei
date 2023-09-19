@@ -1,8 +1,8 @@
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei.chess
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.unit.IntOffset
-import com.weiliang.jinitaimei.ui.theme.chessAssets
+import com.weiliang.jinitaimei.ui.chess.chessAssets
 
 /*
     定义各个角色的棋子：定义棋子的形状

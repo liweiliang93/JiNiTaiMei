@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei.chess
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

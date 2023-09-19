@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei.control
 
 import android.annotation.SuppressLint
 import android.media.MediaPlayer

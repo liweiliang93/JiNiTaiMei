@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei.activity
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -37,6 +37,7 @@ import coil.compose.rememberImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.weiliang.jinitaimei.R
+import com.weiliang.jinitaimei.control.Show
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
 

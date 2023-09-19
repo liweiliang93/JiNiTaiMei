@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.ui.theme
+package com.weiliang.jinitaimei.ui.chess
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

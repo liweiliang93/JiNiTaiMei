@@ -1,5 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,6 +8,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
+import com.weiliang.jinitaimei.activity.ScreenControl
+import com.weiliang.jinitaimei.chess.ChessBoard
+import com.weiliang.jinitaimei.chess.opening
+import com.weiliang.jinitaimei.chess.toList
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
 /*

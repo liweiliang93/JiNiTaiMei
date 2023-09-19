@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.home
+package com.weiliang.jinitaimei.chess
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.IntOffset
