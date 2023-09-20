@@ -1,7 +1,6 @@
-package com.weiliang.jinitaimei.activity
+package com.weiliang.jinitaimei.screen
 
 import android.annotation.SuppressLint
-import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,49 +23,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.paint
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import coil.ComponentRegistry
-import coil.ImageLoader
 import coil.compose.rememberImagePainter
-import coil.decode.GifDecoder
-import coil.decode.ImageDecoderDecoder
 import com.weiliang.jinitaimei.R
+import com.weiliang.jinitaimei.control.ImageLoad
 import com.weiliang.jinitaimei.control.Show
+import com.weiliang.jinitaimei.control.imageLoadForPaint
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
 
 //FirstPage:游戏准备界面,通过点击button到一定次数,即可激活进入游戏按钮,同时可选择下方你喜欢的角色名字
-@Suppress("NAME_SHADOWING")
 @SuppressLint("AutoboxingStateCreation")
 @Composable
 fun OnboardingScreen(
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
-    val imageLoader = ImageLoader.Builder(LocalContext.current)
-        .components(fun ComponentRegistry.Builder.() {
-            if (Build.VERSION.SDK_INT >= 28) {
-                add(ImageDecoderDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
-            }
-        }).build()
-    
-    //加载背景图片
-    val imagePainter: Painter =  rememberImagePainter(
-        data = R.drawable.sz,
-        imageLoader = imageLoader,
-        builder = {
-            placeholder(R.drawable.cxk1)//占位图
-            crossfade(true)//淡出效果
-            
-        })
+    val imagePainter = imageLoadForPaint(R.drawable.sz)
     Column(
         modifier = modifier.fillMaxSize()
             .paint(imagePainter,contentScale = ContentScale.Crop),
@@ -74,15 +51,6 @@ fun OnboardingScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         
-        //使用imageLoader构建imageLoader
-        val imageLoader = ImageLoader.Builder(LocalContext.current)
-            .components(fun ComponentRegistry.Builder.() {
-                if (Build.VERSION.SDK_INT >= 28) {
-                    add(ImageDecoderDecoder.Factory())
-                } else {
-                    add(GifDecoder.Factory())
-                }
-            }).build()
         Spacer(modifier = modifier.padding(vertical = 20.dp))
     
         //进度条进度设置为可记忆的
@@ -132,20 +100,7 @@ fun OnboardingScreen(
             Spacer(modifier = modifier.padding(horizontal = 16.dp))
             
             //加载GIF图片,使图片借助构建的imageLoader加载进来
-            Image(
-                modifier = Modifier
-                    .size(100.dp),
-                painter = rememberImagePainter(
-                    data = R.drawable.cxk2,
-                    imageLoader = imageLoader,
-                    builder = {
-                        placeholder(R.drawable.cxk1)//占位图
-                        crossfade(true)//淡出效果
-
-                    }),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds
-            )
+            ImageLoad(R.drawable.cxk2,100.dp)
             
             Spacer(modifier = modifier.padding(horizontal = 16.dp))
             Button(onClick = {if (progressLinear.value < 1.0f) progressLinear.value = progressLinear.value + 0.1f}) {

@@ -1,4 +1,4 @@
-package com.weiliang.jinitaimei.activity
+package com.weiliang.jinitaimei.control
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -8,6 +8,11 @@ import androidx.compose.runtime.setValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.weiliang.jinitaimei.screen.LandingScreen
+import com.weiliang.jinitaimei.screen.LoginScreen
+import com.weiliang.jinitaimei.screen.MainScreen
+import com.weiliang.jinitaimei.screen.OnboardingScreen
+import com.weiliang.jinitaimei.screen.RegisterScreen
 
 /*
     ScreenControl页面管理:用于进行页面跳转的控制
@@ -33,7 +38,11 @@ fun ScreenControl() {
             composable("first"){
                 LoginScreen(navController)
             }
-
+            
+            composable("second"){
+                RegisterScreen(navController)
+            }
+            
             // 给FirstPage可组合项指定路径
             composable("first_page") {
                 OnboardingScreen(navController)

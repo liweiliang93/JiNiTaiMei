@@ -1,6 +1,5 @@
-package com.weiliang.jinitaimei.activity
+package com.weiliang.jinitaimei.screen
 
-import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
@@ -40,19 +39,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.ComponentRegistry
-import coil.ImageLoader
-import coil.compose.rememberImagePainter
-import coil.decode.GifDecoder
-import coil.decode.ImageDecoderDecoder
 import com.weiliang.jinitaimei.R
 import com.weiliang.jinitaimei.control.KunDongAndSpacer
+import com.weiliang.jinitaimei.control.imageLoadForPaint
 import kotlinx.coroutines.delay
 import java.util.Locale
 
@@ -61,33 +54,14 @@ import java.util.Locale
 */
 
 //使用 SPLASHWAITTIME 来进行与sleep进行延时,SPLASHWAITTIME 表示延长的时间
-private const val SPLASHWAITTIME: Long = 60000
+private const val SPLASHWAITTIME: Long = 100
 
 @Composable
 fun LandingScreen(
     onTimeout: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    
-    val imageLoader = ImageLoader.Builder(LocalContext.current)
-        .components(fun ComponentRegistry.Builder.() {
-            if (Build.VERSION.SDK_INT >= 28) {
-                add(ImageDecoderDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
-            }
-        }).build()
-    
-    //加载背景图片
-    val imagePainter: Painter =  rememberImagePainter(
-        data = R.drawable.cxkdlq,
-        imageLoader = imageLoader,
-        builder = {
-            placeholder(R.drawable.cxk1)//占位图
-            crossfade(true)//淡出效果
-        
-        })
-    
+    val imagePainter = imageLoadForPaint(R.drawable.cxkdlq)
     Box (
         modifier  = Modifier.paint(imagePainter,contentScale = ContentScale.Crop)
             .fillMaxSize()
@@ -111,7 +85,7 @@ fun LandingScreen(
             
                 CircularProgressIndicator()
                 //加载提示框
-                TopAppBar(modifier)
+                TopAppLoadBar(modifier)
                 Spacer(modifier = Modifier.padding(15.dp))
             
                 //文字提示：诸神黄昏,迎接黎明
@@ -159,7 +133,7 @@ fun LandingScreen(
     等待提示函数:Loading时间和两个可点击按钮进行衬托
  */
 @Composable
-fun TopAppBar(
+fun TopAppLoadBar(
     modifier: Modifier
 ){
     Row(

@@ -1,6 +1,7 @@
-package com.weiliang.jinitaimei.activity
+package com.weiliang.jinitaimei.screen
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,14 +28,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.smallTopAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.weiliang.jinitaimei.chess.Chess
 import com.weiliang.jinitaimei.chess.ChessBoard
@@ -42,8 +44,11 @@ import com.weiliang.jinitaimei.chess.checkAndMoveX
 import com.weiliang.jinitaimei.chess.checkAndMoveY
 import com.weiliang.jinitaimei.chess.opening
 import com.weiliang.jinitaimei.chess.toList
+import com.weiliang.jinitaimei.ui.chess.ChessAssets
+import com.weiliang.jinitaimei.ui.chess.DarkChess
+import com.weiliang.jinitaimei.ui.chess.LightChess
+import com.weiliang.jinitaimei.ui.chess.LocalChessAssets
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
-
 
 
 //SecondPage
@@ -59,10 +64,9 @@ fun MainScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar() {
-
+    
     //预定义组件:创建一个顶部应用栏
     TopAppBar(
-
         //windowInsets定义应用栏的系统栏仅在水平方向上填充
         windowInsets = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal),
 
@@ -75,7 +79,7 @@ fun AppBar() {
         navigationIcon = {
             IconButton(
                 onClick = {
-
+                
                 }
             ) {
                 Icon(
@@ -132,12 +136,15 @@ fun AppBar() {
 
 @Composable
 fun HuaRongDao() {
-    
+    var colorCurrent = Color.Black
     Surface(color = MaterialTheme.colorScheme.background) {
 
-        Column {
+        Column (
+            modifier = Modifier.background(colorCurrent)
+        ){
             AppBar()
             Spacer(Modifier.height(20.dp))
+            
             var chessState: List<Chess> by remember {
                 mutableStateOf(opening.toList())
             }
@@ -160,10 +167,25 @@ fun HuaRongDao() {
 
             Row {
                 Spacer(modifier = Modifier.width(10.dp))
-                
+    
                 Button(
                     modifier = Modifier.weight(1f),
-                    onClick = { chessState = opening.toList() }) {
+                    onClick = {
+                        //从LightChess和DarkChess选择一个
+                        LocalChessAssets = compositionLocalOf<ChessAssets> { LightChess }
+                        colorCurrent = Color.Black
+                    }) {
+                    Text("DarkTheme")
+                }
+                //Reset按钮:重置棋盘的初始位置,并切换主题
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = {
+                        chessState = opening.toList()
+                        //从LightChess和DarkChess选择一个
+                        LocalChessAssets = compositionLocalOf<ChessAssets> { DarkChess }
+                        colorCurrent = Color.White
+                    }) {
                     Text("Reset")
                 }
                 Spacer(modifier = Modifier.width(10.dp))
@@ -173,13 +195,5 @@ fun HuaRongDao() {
 
         }
 
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AppBarPreview() {
-    JiNiTaiMeiTheme {
-        AppBar()
     }
 }
