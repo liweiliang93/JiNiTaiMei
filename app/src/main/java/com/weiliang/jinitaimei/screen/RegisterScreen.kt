@@ -199,15 +199,10 @@ fun RegisterScreen(
             OutlinedTextField(
                 isError = pwd.text != conFirmpwd || conFirmpwd.isEmpty(),
                 singleLine = true,
-                maxLines = 1,
                 value = conFirmpwd, onValueChange = { str -> conFirmpwd = str },
                 modifier = Modifier
                     .alpha(0.6f)
-                    .width(390.dp)
-                    .background(
-                        color = Color.White,
-                        shape = RoundedCornerShape(16.dp) // 设置圆角
-                    ),
+                    .width(390.dp),
                 placeholder = {
                     Text("请确认你的密码")
                 },
@@ -216,6 +211,7 @@ fun RegisterScreen(
                 },
                 visualTransformation = transformation,
                 colors = TextFieldDefaults.textFieldColors(Color.Gray),
+                shape = RoundedCornerShape(16.dp), // 设置圆角
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
@@ -227,7 +223,6 @@ fun RegisterScreen(
                             )
                     )
                 },
-                shape = RoundedCornerShape(16.dp), // 设置圆角
                 trailingIcon = {
                     if (showPwd) {
                         IconButton(onClick = { showPwd = !showPwd }) {
@@ -260,7 +255,6 @@ fun RegisterScreen(
                     //如果账号存在,提示账号已存在
                     
                     //账号存在,提示账号存在并进行跳转
-                    
                     
                 },
                 shape = RoundedCornerShape(50),
