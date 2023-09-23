@@ -40,12 +40,19 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.weiliang.jinitaimei.R
 import com.weiliang.jinitaimei.control.imageLoadForPaint
+import com.weiliang.jinitaimei.data.UserViewModel
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, DelicateCoroutinesApi::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
@@ -59,6 +66,7 @@ fun LoginScreen(
     //加载背景图片
     val imagePainter = imageLoadForPaint(R.drawable.sz)
     val imagePainterHK = imageLoadForPaint(R.drawable.hk)
+    val userViewModel: UserViewModel = viewModel()
     
     JiNiTaiMeiTheme {
         Column(
@@ -104,7 +112,9 @@ fun LoginScreen(
                     }
                 },
                 onValueChange = { str -> name = str },
-                colors = TextFieldDefaults.textFieldColors(Color.Gray),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Gray
+                ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.AccountBox,
@@ -127,7 +137,9 @@ fun LoginScreen(
                     Text("请输入密码")
                 },
                 visualTransformation = transformation,
-                colors = TextFieldDefaults.textFieldColors(Color.Gray),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Gray
+                ),
                 label = {
                     if (pwd.isEmpty()) {
                         Text("Input your password")
@@ -167,8 +179,16 @@ fun LoginScreen(
                 modifier = Modifier.width(250.dp)
                 ,
                 onClick = {
-                    //TODO1:查询后如果存在,则进入游戏,否则报错
-                   
+                    //启动一个后台协程
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val user = userViewModel.loginUser(name, pwd)
+                        withContext(Dispatchers.Main) {
+                            if (user != null) {
+                                println("登录成功")
+                                navController.navigate("first_page")
+                            }
+                        }
+                    }
                 },
                 shape = RoundedCornerShape(50),
                 colors = ButtonDefaults.buttonColors(Color(0xff5c59fe)),

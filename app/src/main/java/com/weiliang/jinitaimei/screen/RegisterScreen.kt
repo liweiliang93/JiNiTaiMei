@@ -43,15 +43,23 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.weiliang.jinitaimei.R
 import com.weiliang.jinitaimei.control.imageLoadForPaint
+import com.weiliang.jinitaimei.data.User
+import com.weiliang.jinitaimei.data.UserViewModel
 import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
-    navController: NavController
+    navController: NavController,
 ) {
     //设置账号密码
     var name by remember { mutableStateOf(TextFieldValue()) }
@@ -63,6 +71,7 @@ fun RegisterScreen(
     //加载背景图片
     val imagePainter = imageLoadForPaint(R.drawable.background1)
     val imagePainterZC = imageLoadForPaint(R.drawable.zc)
+    val userViewModel = viewModel<UserViewModel>()
     
     JiNiTaiMeiTheme {
         Column(
@@ -139,7 +148,9 @@ fun RegisterScreen(
                 onValueChange = {
                     str -> name = str
                 },
-                colors = TextFieldDefaults.textFieldColors(Color.Gray),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Gray
+                ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.AccountBox,
@@ -158,7 +169,9 @@ fun RegisterScreen(
                 singleLine = true,
                 value = pwd, onValueChange = { str -> pwd = str },
                 visualTransformation = transformation,
-                colors = TextFieldDefaults.textFieldColors(Color.Gray),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Gray
+                ),
                 placeholder = {
                     Text("输入你的密码")
                 },
@@ -210,7 +223,9 @@ fun RegisterScreen(
                     Text("Input your password again")
                 },
                 visualTransformation = transformation,
-                colors = TextFieldDefaults.textFieldColors(Color.Gray),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Gray
+                ),
                 shape = RoundedCornerShape(16.dp), // 设置圆角
                 leadingIcon = {
                     Icon(
@@ -251,11 +266,19 @@ fun RegisterScreen(
                 modifier = Modifier
                     .width(250.dp),
                 onClick = {
-                    //TODO2:注册账号后直接进入游戏
                     //如果账号存在,提示账号已存在
-                    
-                    //账号存在,提示账号存在并进行跳转
-                    
+                    val user = User(Random(1).nextInt(),name.text, pwd.text)
+                    // 使用 ViewModel 注册用户
+                    CoroutineScope(Dispatchers.IO).launch {
+                        withContext(Dispatchers.Main) {
+                            if (userViewModel.loginUser(name.text, pwd.text) == user) {
+                                println("账号已存在")
+                            } else {
+                                userViewModel.registerUser(user)
+                                navController.navigate("first_page")
+                            }
+                        }
+                    }
                 },
                 shape = RoundedCornerShape(50),
                 colors = ButtonDefaults.buttonColors(Color(0xff5c59fe)),

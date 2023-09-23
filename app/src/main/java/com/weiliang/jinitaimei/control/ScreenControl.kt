@@ -22,9 +22,9 @@ fun ScreenControl() {
 
     //创建NavController,使用NavController进行页面跳转
     val navController = rememberNavController()
-
     //通过showLandingScreen判断LandingScreen是否已经显示过
     var showLandingScreen by remember { mutableStateOf(true) }
+    
     if(showLandingScreen){
 
         //显示LandingScreen
@@ -34,7 +34,7 @@ fun ScreenControl() {
 
         // 用NavHost将NavController和导航图相关联，startDestination指定起始的可组合项
         NavHost(navController = navController, startDestination = "first") {
-            
+    
             composable("first"){
                 LoginScreen(navController)
             }
