@@ -23,14 +23,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -45,7 +41,6 @@ import androidx.compose.ui.unit.dp
 import com.weiliang.jinitaimei.R
 import com.weiliang.jinitaimei.control.KunDongAndSpacer
 import com.weiliang.jinitaimei.control.imageLoadForPaint
-import kotlinx.coroutines.delay
 import java.util.Locale
 
 @Composable

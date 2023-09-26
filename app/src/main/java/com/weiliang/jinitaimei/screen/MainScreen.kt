@@ -26,7 +26,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults.smallTopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
@@ -75,12 +75,12 @@ fun AppBar(
     TopAppBar(
         //windowInsets定义应用栏的系统栏仅在水平方向上填充
         windowInsets = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal),
-
+    
         //定义应用栏的颜色
-        colors = smallTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
+        colors = topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary
         ),
-
+    
         //定义导航图标:Menu
         navigationIcon = {
             IconButton(
