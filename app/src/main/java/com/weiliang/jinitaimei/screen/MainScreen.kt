@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.weiliang.jinitaimei.chess.Chess
 import com.weiliang.jinitaimei.chess.ChessBoard
 import com.weiliang.jinitaimei.chess.checkAndMoveX
@@ -53,9 +54,12 @@ import com.weiliang.jinitaimei.ui.theme.JiNiTaiMeiTheme
 
 //SecondPage
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+) {
     JiNiTaiMeiTheme {
-        HuaRongDao()
+        HuaRongDao(navController)
     }
 }
 
@@ -63,7 +67,9 @@ fun MainScreen() {
 //导航栏:显示一个自定义的应用栏
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar() {
+fun AppBar(
+    navController: NavController
+) {
     
     //预定义组件:创建一个顶部应用栏
     TopAppBar(
@@ -79,7 +85,7 @@ fun AppBar() {
         navigationIcon = {
             IconButton(
                 onClick = {
-                
+                    navController.navigate("sildebar")
                 }
             ) {
                 Icon(
@@ -135,14 +141,16 @@ fun AppBar() {
 }
 
 @Composable
-fun HuaRongDao() {
+fun HuaRongDao(
+    navController: NavController
+) {
     var colorCurrent = Color.Black
     Surface(color = MaterialTheme.colorScheme.background) {
 
         Column (
             modifier = Modifier.background(colorCurrent)
         ){
-            AppBar()
+            AppBar(navController)
             Spacer(Modifier.height(20.dp))
             
             var chessState: List<Chess> by remember {

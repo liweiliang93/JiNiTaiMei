@@ -13,6 +13,7 @@ import com.weiliang.jinitaimei.screen.LoginScreen
 import com.weiliang.jinitaimei.screen.MainScreen
 import com.weiliang.jinitaimei.screen.OnboardingScreen
 import com.weiliang.jinitaimei.screen.RegisterScreen
+import com.weiliang.jinitaimei.screen.SidebarScreen
 
 /*
     ScreenControl页面管理:用于进行页面跳转的控制
@@ -35,6 +36,10 @@ fun ScreenControl() {
         // 用NavHost将NavController和导航图相关联，startDestination指定起始的可组合项
         NavHost(navController = navController, startDestination = "first") {
     
+            composable("sildebar"){
+                SidebarScreen()
+            }
+    
             composable("first"){
                 LoginScreen(navController)
             }
@@ -50,7 +55,7 @@ fun ScreenControl() {
 
             // 给SecondPage可组合项指定路径
             composable("second_page") {
-                MainScreen()
+                MainScreen(navController)
             }
 
         }

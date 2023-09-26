@@ -267,7 +267,7 @@ fun RegisterScreen(
                     .width(250.dp),
                 onClick = {
                     //如果账号存在,提示账号已存在
-                    val user = User(Random(1).nextInt(),name.text, pwd.text)
+                    val user = User(Random(200).nextInt(),name.text, pwd.text)
                     // 使用 ViewModel 注册用户
                     CoroutineScope(Dispatchers.IO).launch {
                         withContext(Dispatchers.Main) {
